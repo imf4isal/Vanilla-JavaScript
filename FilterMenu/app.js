@@ -84,7 +84,42 @@ const menu = [
 const sectionCenter = document.querySelector(".section-center");
 const btnContainer = document.querySelector(".btn-container");
 
-window.addEventListener("load", function () {
+window.addEventListener("load", () => {
+  displayMenuItems(menu);
+
+  const categories = menu.reduce(
+    (values, item) => {
+      if (!values.includes(item.category)) values.push(item.category);
+
+      return values;
+    },
+    ["all"]
+  );
+
+  const buttns = categories
+    .map(button => {
+      return `<button type="button" class="filter-btn" data-id="${button}">${button}</button>`;
+    })
+    .join("");
+
+  btnContainer.innerHTML = buttns;
+
+  const buttons = document.querySelectorAll(".filter-btn");
+
+  buttons.forEach(button => {
+    button.addEventListener("click", function (e) {
+      const cat = e.target.dataset.id;
+
+      const filterItems = menu.filter(item => {
+        if (item.category === cat) return item;
+      });
+      if (cat === "all") displayMenuItems(menu);
+      else return displayMenuItems(filterItems);
+    });
+  });
+});
+
+const displayMenuItems = function (menu) {
   let displayMenu = menu
     .map(item => {
       return `
@@ -105,6 +140,6 @@ window.addEventListener("load", function () {
     .join("");
 
   sectionCenter.innerHTML = displayMenu;
-});
+};
 
 // load and DOMContentLoaded
