@@ -11,24 +11,39 @@
 </main>; */
 
 const value = document.querySelector("#value");
-const button = document.querySelectorAll(".btn");
+const button = Array.from(document.querySelectorAll(".btn"));
 const buttonDecrease = document.querySelector(".decrease");
 const buttonIncrease = document.querySelector(".increase");
 const buttonReset = document.querySelector(".reset");
 
 let counter = 0;
 
-buttonDecrease.addEventListener("click", () => {
-  counter--;
-  value.textContent = counter;
-});
+// buttonDecrease.addEventListener("click", () => {
+//   counter--;
+//   change();
+// });
 
-buttonIncrease.addEventListener("click", () => {
-  counter++;
-  value.textContent = counter;
-});
+// buttonIncrease.addEventListener("click", () => {
+//   counter++;
+//   change();
+// });
 
-buttonReset.addEventListener("click", () => {
-  counter = 0;
-  value.textContent = counter;
+// buttonReset.addEventListener("click", () => {
+//   counter = 0;
+//   change();
+// });
+
+// const change = function () {
+//   value.textContent = counter;
+// };
+
+button.forEach(btn => {
+  const cls = btn.classList;
+  btn.addEventListener("click", function () {
+    if (cls.contains("increase")) counter++;
+    if (cls.contains("decrease")) counter--;
+    if (cls.contains("reset")) counter = 0;
+
+    value.textContent = counter;
+  });
 });
