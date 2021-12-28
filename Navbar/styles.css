@@ -168,7 +168,7 @@ nav {
 }
 .nav-toggle {
   font-size: 1.5rem;
-  color: var(--clr-primary-5);
+  color: var(--clr-grey-3);
   background: transparent;
   border-color: transparent;
   transition: var(--transition);
@@ -176,11 +176,9 @@ nav {
 }
 .nav-toggle:hover {
   color: var(--clr-primary-1);
-  transform: rotate(90deg);
+  transform: rotate(270deg);
 }
-.logo {
-  height: 40px;
-}
+
 .links a {
   color: var(--clr-grey-3);
   font-size: 1rem;
@@ -199,7 +197,7 @@ nav {
   display: none;
 }
 .links {
-  height: 0;
+  height: 0px;
   overflow: hidden;
   transition: var(--transition);
 }
